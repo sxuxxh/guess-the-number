@@ -1,3 +1,7 @@
+/****
+Project2 - Guess the Number
+ **/
+
 import java.util.Scanner;
 
 public class Main {
