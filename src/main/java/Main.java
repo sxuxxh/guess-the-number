@@ -5,15 +5,14 @@ Project2 - Guess the Number
 import java.util.Scanner;
 
 public class Main {
-    static final String greetingMsg = "Hello! What is your name? ";
-    static final String askGuess = "Well, %s, I m thinking of a number between 1 and 20.\n" +
+    private static final String greetingMsg = "Hello! What is your name? ";
+    private static final String askGuess = "Well, %s, I m thinking of a number between 1 and 20.\n" +
             "Take a guess. You have six tries for the game, good luck!\n ";
-    static int randNumFrom = 1;
-    static int randNumTo = 20;
+    private static final int randNumFrom = 1;
+    private static final int randNumTo = 20;
 
     public static void main(String[] args) {
         final String urGuess = "Your guess: ";
-        final String correctAns = " is correct. You win the game!!";
         final String tooLo = " is too low, try again.";
         final String tooHi = " is too high, try again.";
         final String lost = "Game over, you lost.\n";
@@ -30,23 +29,25 @@ public class Main {
         Object usrAns = getUserInput(greetingMsg);
         if (usrAns instanceof String) {
             usrAns = (int)getUserInput(strInterpo(askGuess, (String) usrAns));
-            for (int i = 1; i < 6; i++) {
+            for (int i = 0; i < 6; i++) {
                 if ((int)usrAns == randNum) {
                     System.out.println(urGuess + usrAns + win);
                     break;
                 } else if ((int)usrAns < randNum) {
+                    if (i == 5) {
+                        System.out.println(lost);
+                        break;
+                    }
                     System.out.println(urGuess + usrAns + tooLo);
                     usrAns = (int)getUserInput(again);
-                    if (i == 5) {
-                        System.out.println(lost);
-                    }
                     continue;
                 } else if ((int)usrAns > randNum) {
-                    System.out.println(urGuess + usrAns + tooHi);
-                    usrAns = (int)getUserInput(again);
                     if (i == 5) {
                         System.out.println(lost);
+                        break;
                     }
+                    System.out.println(urGuess + usrAns + tooHi);
+                    usrAns = (int)getUserInput(again);
                     continue;
                 }
             }
