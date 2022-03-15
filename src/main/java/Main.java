@@ -8,12 +8,13 @@ public class Main {
     private static final Scanner scanner = new Scanner(System.in);
     private static final String greetingMsg = "Welcome to Guess The Number! What is your name? ";
     private static final String askGuess = "Well, %s, I m thinking of a number between 1 and 20." +
-            "Take a guess. You have six tries for the game, good luck!\n ";
+            "Take a guess. You have 6-try for the game, good luck!\n ";
     private static final int randNumFrom = 1;
     private static final int randNumTo = 20;
     private static final String quitOrNot = "Enter \"q\" to quit the game and any other key to continue.";
     private static final String badName = "Wrong input, please enter your name.";
     private static final String badGuess = "Wrong input, please enter a number between 1 and 20.";
+    private static final String tryLeft = " You have %s-try left.";
 
     public static void main(String[] args) {
         final String urGuess = "Your guess: ";
@@ -46,14 +47,14 @@ public class Main {
                             System.out.println(lost);
                             break;
                         }
-                        System.out.println(urGuess + usrGuess + tooLo);
+                        System.out.println(urGuess + usrGuess + tooLo + strInterpo(tryLeft, Integer.toString(5-i)));
                         usrGuess = Integer.parseInt(getGuess());
                     } else if ((usrGuess > randNum && usrGuess != -1)) {
                         if (i == 5) {
                             System.out.println(lost);
                             break;
                         }
-                        System.out.println(urGuess + usrGuess + tooHi);
+                        System.out.println(urGuess + usrGuess + tooHi + strInterpo(tryLeft, Integer.toString(5-i)));
                         usrGuess = Integer.parseInt(getGuess());
                     }
                 }
